@@ -1,5 +1,5 @@
 // Form
-import { Form } from "react-router"
+import { Form, useRouteError, Navigate } from "react-router"
 // useState
 import { useState } from "react"
 // authClient
@@ -11,6 +11,9 @@ export const SignUp = () => {
   const [password, setPassword] = useState('')
 
   const signUp = async () => {
+    // const error = useRouteError()
+
+
     await authClient.signUp.email(
       {
         email,
@@ -19,10 +22,10 @@ export const SignUp = () => {
       },
       {
         onRequest: (ctx) => {
-          // show loading state
+          // return <div>Loading...</div>
         },
         onSuccess: (ctx) => {
-          // redirect to home
+          // <Navigate to="/" />
         },
         onError: (ctx) => {
           alert(ctx.error)
@@ -37,11 +40,11 @@ export const SignUp = () => {
       <Form
         onSubmit={signUp}
       >
-        <input type="text"
+        {/* <input type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Name"
-        />
+        /> */}
 
         <input type="email"
           value={email}

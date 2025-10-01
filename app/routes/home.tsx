@@ -17,7 +17,7 @@ export default function Home() {
     return <div>Hello, {data.user.email}</div>
   } else if (isPending) {
     return <div>Loading...</div>
-  } else if (error) {  // later
+  } else if (error) {  // later add more robust error handling
     throw new Error("Unable to authenticate!")
   } else {
     return <div>
