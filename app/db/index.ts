@@ -1,9 +1,12 @@
-// import 'dotenv/config'
+console.log('db/index.ts loading...')
+import 'dotenv/config'
+console.log('DATABASE_URL:', process.env.DATABASE_URL ? 'Found' : 'Missing')
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 
 const client = postgres(process.env.DATABASE_URL!, { prepare: false })
 export const db = drizzle({ client });
+
 
 // FOR TESTING DB CONNECTION
 //

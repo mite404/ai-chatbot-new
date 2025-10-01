@@ -1,6 +1,5 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
-import { authClient } from "lib/auth-client";
+import { authClient } from "../lib/auth-client";
 import { SignIn } from "./signin";
 import { SignUp } from "./signup";
 
@@ -12,14 +11,19 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const { data } = authClient.useSession()
+  const { data, isPending, error } = authClient.useSession()
 
   if (data) {
+    return <div>Hello, {data.user.email}</div>
+  } else if (isPending) {
+    return <div>Loading...</div>
+  } else if (error) {  // later
+    throw new Error("Unable to authenticate!")
+  } else {
     return <div>
       <h1>AI Chat Bot</h1>
       <SignIn />
       <SignUp />
     </div>
-
   }
 }
