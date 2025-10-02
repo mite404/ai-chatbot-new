@@ -7,15 +7,16 @@ export async function action({ request }: Route.ActionArgs) {
   const session = await auth.api.getSession({ headers: request.headers })
   const { messages } = await request.json()
 
-  if (session?.user) {
+  if (!session?.user) {
     return new Response("Unauthorized", { status: 401 })
   }
 
   const result = streamText({
     model: google("gemini-2.5-flash"),
-    prompt: "Invent a new holiday and describe its traditions."
+    messages
   })
 
+  console.log("available methods:", Object.getOwnPropertyNames(Object.getPrototypeOf(result)))
   console.log(messages)
   return result.toTextStreamResponse()
 }
