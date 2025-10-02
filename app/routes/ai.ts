@@ -1,0 +1,21 @@
+import type { Route } from "./+types/ai"
+import { streamText } from "ai"
+import { google } from "@ai-sdk/google"
+import { auth } from "../lib/auth.server"
+
+export async function action({ request }: Route.ActionArgs) {
+  const session = await auth.api.getSession({ headers: request.headers })
+  const { messages } = await request.json()
+
+  if (session?.user) {
+    return new Response("Unauthorized", { status: 401 })
+  }
+
+  const result = streamText({
+    model: google("gemini-2.5-flash"),
+    prompt: "Invent a new holiday and describe its traditions."
+  })
+
+  console.log(messages)
+  return result.toTextStreamResponse()
+}
