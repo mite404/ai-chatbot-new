@@ -1,17 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Share+Tech&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-white dark:bg-gray-950 font-sans;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -21,7 +16,7 @@ body {
 /* @theme inline  ??? */
 @theme {
   --font-head: 'Archivo Black', sans-serif;
-  --font-sans: 'Space Grotesk', sans-serif;
+  --font-sans: 'Share Tech', sans-serif;
   --shadow-xs: 1px 1px 0 0 var(--border);
   --shadow-sm: 2px 2px 0 0 var(--border);
   --shadow: 3px 3px 0 0 var(--border);
@@ -51,6 +46,7 @@ body {
 }
 
 :root {
+  --radius: 0;
   --background: #fff;
   --foreground: #000;
   --card: #fff;
@@ -60,14 +56,13 @@ body {
   --primary-foreground: #000;
   --secondary: #000;
   --secondary-foreground: #fff;
-  --muted: #aeaeae;
+  --muted: #cccccc;
   --muted-foreground: #5a5a5a;
   --accent: #fae583;
   --accent-foreground: #000;
   --destructive: #e63946;
   --destructive-foreground: #fff;
   --border: #000;
-  --radius: 0.625rem;
 }
 
 .dark {
@@ -86,8 +81,9 @@ body {
   --accent-foreground: #000;
   --destructive: #e63946;
   --destructive-foreground: #fff;
-  --border: #3a3a3a;
+  --border: #5c5c5c;
 }
+
 
 @layer base {
   * {
