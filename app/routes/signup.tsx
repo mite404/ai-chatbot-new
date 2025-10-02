@@ -1,19 +1,14 @@
-// Form
-import { Form, useRouteError, Navigate } from "react-router"
-// useState
+import { Form, useRouteError, Navigate, useNavigate } from "react-router"
 import { useState } from "react"
-// authClient
 import { authClient } from "../lib/auth-client"
 
 export const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const signUp = async () => {
-    // const error = useRouteError()
-
-
     await authClient.signUp.email(
       {
         email,
@@ -25,7 +20,7 @@ export const SignUp = () => {
           // return <div>Loading...</div>
         },
         onSuccess: (ctx) => {
-          // <Navigate to="/" />
+          navigate("/chat")
         },
         onError: (ctx) => {
           alert(ctx.error)
@@ -38,26 +33,20 @@ export const SignUp = () => {
     <div>
       <h2>SignUp</h2>
       <Form
-        onSubmit={signUp}
-      >
-        {/* <input type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Name"
-        /> */}
-
+        onSubmit={signUp}>
         <input type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
         />
-
         <input type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button type="submit">
+        <button type="submit"
+          style={{ cursor: 'pointer' }}
+        >
           Sign Up
         </button>
       </Form>
