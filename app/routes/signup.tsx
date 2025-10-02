@@ -1,4 +1,4 @@
-import { Form, useRouteError, Navigate, useNavigate } from "react-router"
+import { Form, useRouteError, Navigate, useNavigate, redirect } from "react-router"
 import { useState } from "react"
 import { authClient } from "../lib/auth-client"
 
@@ -23,7 +23,7 @@ export const SignUp = () => {
           navigate("/chat")
         },
         onError: (ctx) => {
-          alert(ctx.error)
+          alert(ctx.error.message)
         },
       },
     )
