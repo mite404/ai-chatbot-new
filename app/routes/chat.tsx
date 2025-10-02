@@ -72,7 +72,7 @@ export default function Chat() {
 
   const [input, setInput] = useState('')
   const data = useLoaderData()
-  const { messages, sendMessage } = useChat({ streamProtocol: 'text' })
+  const { messages, sendMessage } = useChat({ streamProtocol: 'data' })
 
   console.log("Current messages:", messages)
   console.log("Type of messages:", typeof messages)
