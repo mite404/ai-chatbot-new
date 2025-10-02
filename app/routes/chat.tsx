@@ -2,7 +2,8 @@ import { useLoaderData } from "react-router"
 import { loader } from "./protected";
 import { useChat } from "@ai-sdk/react"
 import { useState } from "react"
-
+import { Input } from "~/components/retroui/Input";
+import { Button } from "~/components/retroui/Button";
 
 export { loader }
 
@@ -79,7 +80,8 @@ export default function Chat() {
   console.log("Is messages an array?", Array.isArray(messages))
 
   return (
-    <div>
+    <div className="bg-gray-200 p-4">
+
       {messages.map((message) => (
         <div key={message.id} className="whitespace-pre-wrap">
           <strong>{message.role === 'user' ? 'User: ' : 'AI: '}</strong>
@@ -95,11 +97,13 @@ export default function Chat() {
         sendMessage({ text: input })
         setInput('')
       }}>
-        <input type="text"
+
+
+        <Input type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter message..." />
-        <button type="submit">Send</button>
+        <Button type="submit">Send</Button>
       </form>
     </div>
   )
