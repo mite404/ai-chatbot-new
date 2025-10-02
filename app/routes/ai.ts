@@ -18,7 +18,7 @@ export async function action({ request }: Route.ActionArgs) {
     messages: convertedMessages
   })
 
-  // console.log("available methods:", Object.getOwnPropertyNames(Object.getPrototypeOf(result)))
+  console.log("available methods:", Object.getOwnPropertyNames(Object.getPrototypeOf(result)))
   console.log(convertedMessages)
   return result.toUIMessageStreamResponse()
 }
